@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -5,6 +6,13 @@
   --color-brand-bg: #F8F9FA;
   --color-brand-border: #E0E0E0;
   --color-grid-header: #F5F5F5;
+
+  --color-gray-100: #F3F4F6;
+  --color-gray-400: #9CA3AF;
+  --color-gray-700: #374151;
+  --color-bit-dark-green: #438361; /* --Bit-Dark-Green */
+  --color-bit-light-green: #EDF3EC;
+
   --font-sans: 'Inter', system-ui, sans-serif;
 }
 

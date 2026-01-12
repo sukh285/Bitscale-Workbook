@@ -1,11 +1,7 @@
-import React from 'react'
+import { Dashboard } from "./pages/Dashboard";
 
-const App = () => {
-  return (
-    <div>
-      <h1 className='bg-brand-border'>Hello</h1>
-    </div>
-  )
+function App() {
+  return <Dashboard />;
 }
 
-export default App
+export default App;
