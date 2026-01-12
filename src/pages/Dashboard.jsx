@@ -2,6 +2,7 @@ import React from "react";
 import { Header } from "../components/layout/Header";
 import { PaymentBanner } from "../components/ui/PaymentBanner";
 import { GridToolbar } from "../components/grid/GridToolbar";
+import { GridFooter } from "../components/grid/GridFooter";
 
 export const Dashboard = () => {
   return (
@@ -14,8 +15,12 @@ export const Dashboard = () => {
         {/* Toolbar Section */}
         <GridToolbar />
 
-
+        <div className="flex-1 overflow-hidden bg-brand-bg relative">
+          {/* <VirtualGrid /> */}
+        </div>
       </main>
+
+      <GridFooter />
     </div>
   );
 };
