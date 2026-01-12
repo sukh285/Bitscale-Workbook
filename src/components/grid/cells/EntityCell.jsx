@@ -1,25 +1,35 @@
-import React from 'react';
-import { Users, Building, PlayCircle } from 'lucide-react';
+import React from "react";
+import { Users, Building2, ChevronRight } from "lucide-react";
+import { clsx } from "clsx";
 
 export const EntityCell = ({ value }) => {
   // value = { type: 'user' | 'company', value: 'Name' }
-  const isCompany = value.type === 'company';
-  
+  const isCompany = value.type === "company";
+
   return (
-    <div className="w-full h-full flex items-center px-3 gap-2 group cursor-pointer">
-      {/* Icon: Changes to Play Button on Hover */}
-      <div className="relative w-5 h-5 flex items-center justify-center shrink-0">
-        <div className="group-hover:hidden text-gray-400">
-           {isCompany ? <Building size={16} /> : <Users size={16} />}
+    <div className="w-full h-full flex items-center px-4 py-2">
+      {/* The Inner Container */}
+      <div
+        className={`
+         w-full h-full flex items-center justify-between px-2 rounded-full border transition-colors cursor-pointer group
+         ${
+           isCompany
+             ? "bg-bit-light-green border-green-100 text-gray-700"
+             : "bg-bit-light-blue border-blue-100 text-gray-700"
+         }
+      `}
+      >
+        {/* Left: Icon + Name */}
+        <div className="flex items-center gap-2 truncate">
+          <div className="shrink-0 text-gray-500">
+            {isCompany ? <Building2 size={14} /> : <Users size={14} />}
+          </div>
+          <span className="text-sm font-medium truncate">{value.value}</span>
         </div>
-        <div className="hidden group-hover:block text-indigo-600">
-           <PlayCircle size={18} />
-        </div>
+
+        {/* Right: Chevron */}
+        <ChevronRight size={14} className="text-gray-400 shrink-0" />
       </div>
-      
-      <span className="text-sm font-medium text-gray-900 truncate">
-        {value.value}
-      </span>
     </div>
   );
 };

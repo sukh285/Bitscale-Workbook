@@ -1,5 +1,3 @@
-// src/lib/mockData.js
-
 const USERS = ["Mike Braham", "Alex Johnson", "Sarah Thompson", "David Lee", "Emily Carter", "James Smith", "Laura White", "Chris Brown"];
 const COMPANIES = [
   { name: "Google", logo: "https://logo.clearbit.com/google.com" },

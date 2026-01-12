@@ -4,9 +4,10 @@ import { GRID_COLUMNS } from '../../lib/gridConfig';
 import { generateMockData } from '../../lib/mockData';
 import { 
   Loader2, Play, Plus, 
-  Users, Calendar, Building, Globe, Linkedin, Mail, AtSign, Target, Database, Phone, Link as LinkIcon, Type 
+  Users, Calendar, Building2, Globe, Linkedin, Mail, AtSign, Target, Database, Phone, Link as LinkIcon, Type 
 } from 'lucide-react';
 
+// Import Cells
 import { IndexCell } from './cells/IndexCell';
 import { EntityCell } from './cells/EntityCell';
 import { CompanyCell } from './cells/CompanyCell';
@@ -16,11 +17,25 @@ import { TagCell } from './cells/TagCell';
 import { StatusTextCell } from './cells/StatusTextCell';
 import { TextCell } from './cells/TextCell';
 
-// 1. Icon Mapper for Headers
+// ... (Keep existing Header Icons/Cell Component maps) ...
+const CELL_COMPONENTS = {
+  index: IndexCell,
+  entity: EntityCell,
+  company: CompanyCell,
+  link: LinkCell,
+  waterfall: WaterfallCell,
+  tag: TagCell,
+  status_text: StatusTextCell,
+  error_text: StatusTextCell,
+  text: TextCell,
+  editable: TextCell,
+  add_new: () => <div />
+};
+
 const HEADER_ICONS = {
   users: Users,
   calendar: Calendar,
-  building: Building,
+  building: Building2, // Updated to Building2 for outline style
   globe: Globe,
   linkedin: Linkedin,
   mail: Mail,
@@ -33,22 +48,7 @@ const HEADER_ICONS = {
   add_new: Plus
 };
 
-// 2. Cell Component Mapper
-const CELL_COMPONENTS = {
-  index: IndexCell,
-  entity: EntityCell,
-  company: CompanyCell,
-  link: LinkCell,
-  waterfall: WaterfallCell,
-  tag: TagCell,
-  status_text: StatusTextCell,
-  error_text: StatusTextCell, // Re-use StatusText for errors
-  text: TextCell,
-  editable: TextCell, // Using TextCell for now
-  add_new: () => <div /> // Empty cell for "Add New"
-};
-
-// Generate Data Once
+// Generate Data
 const data = generateMockData(2000);
 
 export const VirtualGrid = () => {
@@ -57,53 +57,82 @@ export const VirtualGrid = () => {
   const rowVirtualizer = useVirtualizer({
     count: data.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 44,
+    estimateSize: () => 44, 
     overscan: 5,
   });
 
   return (
-    <div ref={parentRef} className="h-full w-full overflow-auto bg-white select-none">
-      
+    <div ref={parentRef} className="h-full w-full overflow-auto bg-white select-none scrollbar-thin">
       <div 
         className="relative min-w-max"
         style={{ height: `${rowVirtualizer.getTotalSize()}px` }}
       >
         
-        {/* --- DYNAMIC HEADER --- */}
-        <div className="sticky top-0 z-20 flex bg-gray-50 border-b border-brand-border shadow-sm">
+        {/* --- HEADER ROW --- */}
+        <div className="sticky top-0 z-20 flex bg-white border-b border-brand-border shadow-sm">
            {GRID_COLUMNS.map((col, index) => {
              const IconComponent = HEADER_ICONS[col.icon] || Type;
              
-             // Sticky Logic Calculation
+             // Sticky Logic
              let stickyStyle = {};
              if (col.pinned) {
                stickyStyle = {
                  position: 'sticky',
-                 left: index === 0 ? 0 : 50, // 1st col at 0, 2nd col after 1st (50px)
-                 zIndex: 30, // Higher than normal headers
-                 backgroundColor: '#F9FAFB'
+                 left: index === 0 ? 0 : 50, 
+                 zIndex: 30, 
+                 backgroundColor: 'white'
                };
              }
 
+             // --- CUSTOM HEADER RENDER LOGIC ---
+
+             // 1. Sno Column: Checkbox + Play Icon
+             if (col.id === 'id') {
+                return (
+                  <div key={col.id} className="flex items-center justify-center gap-2 px-3 py-2 border-r border-brand-border bg-gray-50" style={{ width: col.width, ...stickyStyle }}>
+                      <div className="w-4 h-4 rounded-[3px] border border-gray-300 bg-white" />
+                      <Play size={12} className="text-gray-300 fill-gray-300" />
+                  </div>
+                );
+             }
+
+             // 2. Imported Data Column: Overlapping Icons
+             if (col.id === 'importedData') {
+                return (
+                  <div key={col.id} className="flex items-center gap-2 px-3 py-2 border-r border-brand-border bg-gray-50" style={{ width: col.width, ...stickyStyle }}>
+                      
+                      {/* Overlapping Icons Component */}
+                      <div className="relative flex items-center w-8 h-4 shrink-0">
+                         <div className="absolute left-0 z-10 w-5 h-5 bg-bit-light-blue rounded-full flex items-center justify-center border border-white">
+                            <Users size={10} className="text-gray-600" />
+                         </div>
+                         <div className="absolute left-3 z-20 w-5 h-5 bg-green-50 rounded-full flex items-center justify-center border border-white">
+                            <Building2 size={10} className="text-gray-600" />
+                         </div>
+                      </div>
+
+                      <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Imported Data</span>
+                  </div>
+                );
+             }
+
+             // 3. Default Columns
              return (
                <div 
                  key={col.id}
                  className="flex items-center justify-between px-3 py-2 border-r border-brand-border text-xs font-semibold text-gray-500 uppercase tracking-wide group"
                  style={{ width: col.width, ...stickyStyle }}
                >
-                 {/* Left: Icon + Label */}
                  <div className="flex items-center gap-2">
                     <IconComponent size={14} className="text-gray-400" />
                     <span>{col.label}</span>
                  </div>
 
-                 {/* Right: Conditional Spinner / Play Button */}
-                 {col.id !== 'addNew' && col.id !== 'id' && (
+                 {col.id !== 'addNew' && (
                    <div className="text-gray-400">
                      {col.loading ? (
                         <Loader2 size={14} className="animate-spin text-indigo-600" />
                      ) : (
-                        // Play button appears on hover (or stays if relevant)
                         <Play size={14} className="opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer hover:text-indigo-600" />
                      )}
                    </div>
@@ -113,7 +142,7 @@ export const VirtualGrid = () => {
            })}
         </div>
 
-        {/* --- VIRTUAL BODY --- */}
+        {/* --- VIRTUAL BODY ROWS --- */}
         {rowVirtualizer.getVirtualItems().map((virtualRow) => {
           const row = data[virtualRow.index];
           
@@ -130,14 +159,14 @@ export const VirtualGrid = () => {
               {GRID_COLUMNS.map((col, index) => {
                  const CellComponent = CELL_COMPONENTS[col.type] || TextCell;
                  
-                 // Reuse sticky logic for cells
+                 // Sticky Body Logic
                  let stickyStyle = {};
                  if (col.pinned) {
                     stickyStyle = {
                       position: 'sticky',
                       left: index === 0 ? 0 : 50,
                       zIndex: 10,
-                      backgroundColor: 'white'
+                      backgroundColor: 'white' // Inherit from row hover
                     };
                  }
 

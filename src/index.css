@@ -23,3 +23,26 @@
   font-family: var(--font-sans);
   background-color: var(--color-brand-bg);
 }
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 10px; /* Horizontal scrollbar thickness */
+  width: 10px; /* Vertical scrollbar thickness */
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #9ca3af;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #9ca3af; /* gray-300 */
+  border-radius: 20px;
+  border: 3px solid transparent; /* "padding" around the scrollbar so it floats */
+  background-clip: content-box;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af; /* gray-400 on hover */
+}
+
+/* Firefox */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}

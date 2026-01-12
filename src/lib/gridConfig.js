@@ -5,7 +5,7 @@ export const GRID_COLUMNS = [
   { 
     id: 'id', 
     label: '', 
-    width: 50, 
+    width: 80, 
     pinned: true,
     type: 'index' 
   },
