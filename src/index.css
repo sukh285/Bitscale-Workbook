@@ -1,19 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-brand-red: #D32F2F;
-  --color-brand-bg: #F8F9FA;
-  --color-brand-border: #E0E0E0;
-  --color-grid-header: #F5F5F5;
+  --color-brand-red: #c81e1e;
+  --color-brand-bg: #f8f9fa;
+  --color-brand-border: #e0e0e0;
+  --color-grid-header: #f5f5f5;
 
-  --color-gray-100: #F3F4F6;
-  --color-gray-400: #9CA3AF;
+  --color-gray-100: #f3f4f6;
+  --color-gray-400: #9ca3af;
   --color-gray-700: #374151;
   --color-bit-dark-green: #438361; /* --Bit-Dark-Green */
-  --color-bit-light-green: #EDF3EC;
+  --color-bit-light-green: #edf3ec;
 
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --shadow-shadow1: 0px 4px 4px 0px #00000040;
 }
 
 :root {
