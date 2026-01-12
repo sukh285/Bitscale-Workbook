@@ -1,12 +1,12 @@
 const USERS = ["Mike Braham", "Alex Johnson", "Sarah Thompson", "David Lee", "Emily Carter", "James Smith", "Laura White", "Chris Brown"];
 const COMPANIES = [
-  { name: "Google", logo: "https://logo.clearbit.com/google.com" },
-  { name: "Amazon", logo: "https://logo.clearbit.com/amazon.com" },
-  { name: "LinkedIn", logo: "https://logo.clearbit.com/linkedin.com" },
-  { name: "Microsoft", logo: "https://logo.clearbit.com/microsoft.com" },
-  { name: "Apple", logo: "https://logo.clearbit.com/apple.com" },
-  { name: "TED", logo: "https://logo.clearbit.com/ted.com" },
-  { name: "Unilever", logo: "https://logo.clearbit.com/unilever.com" }
+  { name: "Google", logo: "https://img.logo.dev/google.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=128&retina=false&format=png&theme=dark" },
+  { name: "Amazon", logo: "https://img.logo.dev/amazon.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=128&retina=false&format=png&theme=dark" },
+  { name: "LinkedIn", logo: "https://img.logo.dev/linkedin.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=128&retina=false&format=png&theme=dark" },
+  { name: "Microsoft", logo: "https://img.logo.dev/microsoft.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=128&retina=false&format=png&theme=dark" },
+  { name: "Apple", logo: "https://img.logo.dev/apple.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=128&retina=false&format=png&theme=light" },
+  { name: "TED", logo: "https://img.logo.dev/ted.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=128&retina=false&format=png&theme=light" },
+  { name: "Unilever", logo: "https://img.logo.dev/unilever.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=128&retina=false&format=png&theme=dark" }
 ];
 
 // Helper to get random array item
