@@ -4,8 +4,8 @@ import coinsIcon from "/coins.svg";
 export const CreditsDisplay = () => {
   return (
     <div className="flex items-center bg-bit-light-green rounded-lg border border-transparent hover:border-brand-border transition-colors">
-      <div className="flex items-center gap-2 py-1 pr-2 pl-2">
-        {/* Coins Section */}
+      <div className="flex items-center gap-2 py-1 px-2 md:pr-2 md:pl-2">
+        {/* Coins + Count */}
         <div className="flex items-center gap-1.5">
           <img
             src={coinsIcon}
@@ -17,8 +17,8 @@ export const CreditsDisplay = () => {
           </span>
         </div>
 
-        {/* Free Badge */}
-        <div className="bg-bit-dark-green text-white text-sm font-medium px-2.5 py-1.5 rounded-lg ml-2 leading-none">
+        {/* Plan Badge (secondary info) */}
+        <div className="hidden sm:inline bg-bit-dark-green text-white text-sm font-medium px-2.5 py-1.5 rounded-lg ml-2 leading-none">
           Free
         </div>
       </div>
