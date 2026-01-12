@@ -1,6 +1,5 @@
 import React from "react";
 import { Users, Building2, ChevronRight } from "lucide-react";
-import { clsx } from "clsx";
 
 export const EntityCell = ({ value }) => {
   // value = { type: 'user' | 'company', value: 'Name' }
