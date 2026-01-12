@@ -30,7 +30,6 @@ export const generateMockData = (count = 2000) => {
 
     // 7. Email Waterfall States
     const emailWaterfallState = getRandom(['found', 'found', 'found', 'missing', 'loading', 'queued', 'pending', 'error']); 
-    
     // 8. Email Address Logic (Empty if loading/missing)
     let emailAddr = "";
     if (emailWaterfallState === 'found') emailAddr = `contact@${company.name.toLowerCase()}.com`;
